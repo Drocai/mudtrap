@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --bg-deep: #0a0908;
+  --bg-cave: #151210;
+  --bg-water: #1a1518;
+  --purple-glow: #a855f7;
+  --purple-dark: #7c3aed;
+  --purple-light: #c084fc;
+  --gold: #d4a843;
+  --gold-light: #e9c46a;
+  --gold-dark: #b8860b;
+  --text-primary: #f5f0e8;
+  --text-secondary: #a89f94;
+  --text-muted: #6b6560;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Crimson Text', Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Glow Effects */
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4),
+              0 0 40px rgba(168, 85, 247, 0.2),
+              inset 0 0 20px rgba(168, 85, 247, 0.1);
+}
+
+.glow-gold {
+  box-shadow: 0 0 15px rgba(212, 168, 67, 0.3);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.6),
+               0 0 40px rgba(168, 85, 247, 0.4);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 15px rgba(212, 168, 67, 0.5);
+}
+
+/* Buttons */
+.btn-swamp {
+  background: linear-gradient(180deg, var(--bg-water) 0%, var(--bg-cave) 100%);
+  border: 2px solid var(--gold-dark);
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.btn-swamp::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(168, 85, 247, 0.2) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-swamp:hover {
+  border-color: var(--purple-glow);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-swamp:hover::before {
+  opacity: 1;
+}
+
+.btn-vip {
+  background: linear-gradient(180deg, var(--purple-dark) 0%, #4c1d95 100%);
+  border: 2px solid var(--purple-glow);
+  color: white;
+}
+
+.btn-vip:hover {
+  background: linear-gradient(180deg, var(--purple-glow) 0%, var(--purple-dark) 100%);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+}
+
+/* Section Divider */
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--purple-dark) 20%,
+    var(--purple-glow) 50%,
+    var(--purple-dark) 80%,
+    transparent 100%
+  );
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+/* Track Cards */
+.track-card {
+  background: linear-gradient(180deg, var(--bg-water) 0%, var(--bg-cave) 100%);
+  border: 2px solid var(--gold-dark);
+  padding: 16px 20px;
+  text-align: center;
+  position: relative;
+  min-width: 140px;
+  transition: all 0.3s ease;
+}
+
+.track-card.done {
+  border-color: var(--purple-glow);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+.track-card.in-progress {
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(212, 168, 67, 0.3);
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+.track-card.coming-soon {
+  opacity: 0.6;
+}
+
+/* Glass Panel */
+.glass-panel {
+  background: rgba(21, 18, 16, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+/* Waterfall Background */
+.waterfall-section {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-cave) 100%);
+}
+
+/* Photo Wall */
+.photo-thumb {
+  width: 80px;
+  height: 80px;
+  background: var(--bg-cave);
+  border: 2px solid var(--gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: all 0.3s ease;
+}
+
+.photo-thumb:hover {
+  border-color: var(--purple-glow);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--purple-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-glow);
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 15px rgba(212, 168, 67, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(212, 168, 67, 0.5); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes waterfall-flow {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100px; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn-swamp {
+    padding: 10px 20px;
+    font-size: 0.75rem;
+  }
+
+  .track-card {
+    min-width: 100px;
+    padding: 12px 14px;
+  }
+}
