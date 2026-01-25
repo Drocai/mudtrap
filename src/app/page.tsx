@@ -1,17 +1,20 @@
 'use client'
 
-import { useState } from 'react'
+import Link from 'next/link'
 
 export default function Home() {
-  const [activeNav, setActiveNav] = useState('HOME')
-
-  const navItems = ['HOME', 'RELEASES', 'VIP ACCESS', 'STUDIO']
+  const navItems = [
+    { name: 'HOME', href: '/' },
+    { name: 'RELEASES', href: '/releases' },
+    { name: 'VIP ACCESS', href: '/vip' },
+    { name: 'STUDIO', href: '/studio' },
+  ]
 
   return (
     <div className="min-h-screen waterfall-section">
       {/* Waterfall overlay effect */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-30"
+        className="fixed inset-0 pointer-events-none opacity-30 z-0"
         style={{
           background: `repeating-linear-gradient(
             180deg,
@@ -45,17 +48,17 @@ export default function Home() {
           {/* Navigation */}
           <nav className="flex justify-center gap-2 md:gap-8 flex-wrap">
             {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => setActiveNav(item)}
+              <Link
+                key={item.name}
+                href={item.href}
                 className="px-3 py-2 text-sm tracking-wider transition-all hover:text-purple-400"
                 style={{
-                  color: activeNav === item ? 'var(--purple-light)' : 'var(--gold-light)',
-                  borderBottom: activeNav === item ? '2px solid var(--purple-glow)' : '2px solid transparent',
+                  color: item.name === 'HOME' ? 'var(--purple-light)' : 'var(--gold-light)',
+                  borderBottom: item.name === 'HOME' ? '2px solid var(--purple-glow)' : '2px solid transparent',
                 }}
               >
-                {item}
-              </button>
+                {item.name}
+              </Link>
             ))}
           </nav>
         </div>
@@ -116,7 +119,7 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
-              <button className="btn-swamp">VIEW ALL TRACKS</button>
+              <Link href="/releases" className="btn-swamp inline-block">VIEW ALL TRACKS</Link>
             </div>
           </div>
 
@@ -143,7 +146,7 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
-              <button className="btn-swamp btn-vip">JOIN THE CREW</button>
+              <Link href="/vip" className="btn-swamp btn-vip inline-block">JOIN THE CREW</Link>
             </div>
           </div>
         </div>
@@ -164,7 +167,7 @@ export default function Home() {
             <div className="photo-thumb">🎸</div>
           </div>
           <div className="text-center">
-            <button className="btn-swamp">ENTER NOW</button>
+            <Link href="/studio" className="btn-swamp inline-block">ENTER NOW</Link>
           </div>
         </div>
       </section>
@@ -178,15 +181,15 @@ export default function Home() {
             THE STUDIO
           </h3>
           <div className="flex justify-center gap-3 md:gap-4 flex-wrap">
-            <button className="btn-swamp">
+            <Link href="/studio" className="btn-swamp inline-block">
               <span className="mr-2">✦</span>ADD UPDATE<span className="ml-2">✦</span>
-            </button>
-            <button className="btn-swamp">
+            </Link>
+            <Link href="/studio" className="btn-swamp inline-block">
               <span className="mr-2">✦</span>UPLOAD FILE<span className="ml-2">✦</span>
-            </button>
-            <button className="btn-swamp">
+            </Link>
+            <Link href="/studio" className="btn-swamp inline-block">
               <span className="mr-2">✦</span>VOTE NOW<span className="ml-2">✦</span>
-            </button>
+            </Link>
           </div>
         </div>
       </section>
