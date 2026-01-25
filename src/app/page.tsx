@@ -5,114 +5,70 @@ import { useState } from 'react'
 export default function Home() {
   const [activeNav, setActiveNav] = useState('HOME')
 
-  const navItems = ['HOME', 'RELEASES', 'VIP ACCESS', 'STUDIO']
-
   return (
-    <div className="min-h-screen waterfall-section">
-      {/* Waterfall overlay effect */}
-      <div
-        className="fixed inset-0 pointer-events-none opacity-30"
-        style={{
-          background: `repeating-linear-gradient(
-            180deg,
-            transparent 0px,
-            rgba(168, 85, 247, 0.03) 2px,
-            transparent 4px
-          )`,
-          animation: 'waterfall-flow 3s linear infinite',
-        }}
-      />
-
-      {/* Header */}
-      <header className="relative z-10 py-6 px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Logo */}
-          <div className="text-center mb-6">
-            <h1
-              className="text-4xl md:text-6xl font-bold tracking-wider"
-              style={{
-                color: 'var(--gold)',
-                textShadow: '0 0 30px rgba(168, 85, 247, 0.4), 2px 2px 0 var(--gold-dark)',
-              }}
-            >
-              MUD <span style={{ fontSize: '0.6em', verticalAlign: 'middle' }}>IN</span> TRAP
+    <div className="main-container">
+      <div className="content-wrapper">
+        {/* Header */}
+        <header className="site-header">
+          <div className="text-center">
+            <h1 className="logo-title">
+              MUD <span>IN</span> TRAP
             </h1>
-            <p className="text-sm tracking-[0.3em] mt-2" style={{ color: 'var(--gold-dark)' }}>
-              Country Meets Trap
-            </p>
+            <p className="tagline">Country Meets Trap</p>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex justify-center gap-2 md:gap-8 flex-wrap">
-            {navItems.map((item) => (
+          <nav className="main-nav">
+            {['HOME', 'RELEASES', 'VIP ACCESS', 'STUDIO'].map((item) => (
               <button
                 key={item}
                 onClick={() => setActiveNav(item)}
-                className="px-3 py-2 text-sm tracking-wider transition-all hover:text-purple-400"
-                style={{
-                  color: activeNav === item ? 'var(--purple-light)' : 'var(--gold-light)',
-                  borderBottom: activeNav === item ? '2px solid var(--purple-glow)' : '2px solid transparent',
-                }}
+                className={`nav-link ${activeNav === item ? 'active' : ''}`}
               >
                 {item}
               </button>
             ))}
           </nav>
-        </div>
-      </header>
+        </header>
 
-      {/* Hero Section */}
-      <section className="relative z-10 py-12 px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2
-            className="text-3xl md:text-5xl font-bold mb-4 text-glow-purple"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            WELCOME TO THE SWAMP
-          </h2>
-          <p className="text-lg md:text-xl mb-8" style={{ color: 'var(--text-secondary)' }}>
-            Behind The Scenes of the Music
-          </p>
+        {/* Hero Section */}
+        <section className="hero-section">
+          <h2 className="hero-title">WELCOME TO THE SWAMP</h2>
+          <p className="hero-subtitle">Behind The Scenes of the Music</p>
 
-          {/* Current Track Info */}
-          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-12 mb-8">
-            <div className="glass-panel px-6 py-3 rounded">
-              <span className="text-sm" style={{ color: 'var(--text-muted)' }}>CURRENT TRACK:</span>
-              <span className="ml-2 font-semibold" style={{ color: 'var(--gold-light)' }}>LOCK &quot;CHEVY 1&quot;</span>
+          <div className="track-info-row">
+            <div className="track-info-box">
+              <span className="label">CURRENT TRACK:</span>
+              <span className="value">LOCK &quot;CHEVY 1&quot;</span>
             </div>
-            <div className="glass-panel px-6 py-3 rounded">
-              <span className="text-sm" style={{ color: 'var(--text-muted)' }}>NEXT UP:</span>
-              <span className="ml-2 font-semibold" style={{ color: 'var(--gold-light)' }}>TIMMY&apos;S SOLO</span>
+            <div className="track-info-box">
+              <span className="label">NEXT UP:</span>
+              <span className="value">TIMMY&apos;S SOLO</span>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div className="section-divider my-8" />
+        <div className="section-divider" />
 
-      {/* Season Roadmap & VIP Section */}
-      <section className="relative z-10 py-12 px-4">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+        {/* Main Grid - Roadmap & VIP */}
+        <section className="main-grid">
           {/* Season Roadmap */}
-          <div className="glass-panel p-6 rounded-lg">
-            <h3 className="text-xl md:text-2xl font-bold text-center mb-6" style={{ color: 'var(--gold)' }}>
-              ✦ THE SEASON ROADMAP ✦
-            </h3>
-            <div className="flex justify-center gap-3 md:gap-4 flex-wrap mb-6">
+          <div className="glass-panel">
+            <h3 className="section-title">✦ THE SEASON ROADMAP ✦</h3>
+            <div className="track-cards">
               <div className="track-card done">
-                <div className="text-xs tracking-wider mb-1" style={{ color: 'var(--text-muted)' }}>TRACK 1</div>
-                <div className="font-bold text-sm" style={{ color: 'var(--gold-light)' }}>CHEVY 1</div>
-                <div className="text-xs mt-2 uppercase tracking-wider" style={{ color: 'var(--purple-light)' }}>DONE</div>
+                <div className="track-label">TRACK 1</div>
+                <div className="track-name">CHEVY 1</div>
+                <div className="track-status">DONE</div>
               </div>
               <div className="track-card in-progress">
-                <div className="text-xs tracking-wider mb-1" style={{ color: 'var(--text-muted)' }}>TIMMY&apos;S</div>
-                <div className="font-bold text-sm" style={{ color: 'var(--gold-light)' }}>TURN</div>
-                <div className="text-xs mt-2 uppercase tracking-wider" style={{ color: 'var(--gold)' }}>IN PROGRESS</div>
+                <div className="track-label">TIMMY&apos;S</div>
+                <div className="track-name">TURN</div>
+                <div className="track-status">IN PROGRESS</div>
               </div>
               <div className="track-card coming-soon">
-                <div className="text-xs tracking-wider mb-1" style={{ color: 'var(--text-muted)' }}>COLLAB</div>
-                <div className="font-bold text-sm" style={{ color: 'var(--gold-light)' }}>TRACK</div>
-                <div className="text-xs mt-2 uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>COMING SOON</div>
+                <div className="track-label">COLLAB</div>
+                <div className="track-name">TRACK</div>
+                <div className="track-status">COMING SOON</div>
               </div>
             </div>
             <div className="text-center">
@@ -121,133 +77,69 @@ export default function Home() {
           </div>
 
           {/* VIP Access */}
-          <div className="glass-panel p-6 rounded-lg glow-purple">
-            <h3 className="text-xl md:text-2xl font-bold text-center mb-4" style={{ color: 'var(--purple-light)' }}>
-              VIP ACCESS
-            </h3>
-            <p className="text-center mb-6 text-sm tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-              EARLY DROPS • EXCLUSIVE DEMOS
-            </p>
-            <div className="space-y-4 mb-6">
-              <div className="flex items-center gap-3 text-sm" style={{ color: 'var(--text-primary)' }}>
-                <span className="text-purple-400">✓</span> Behind-the-scenes content
+          <div className="glass-panel vip-panel">
+            <h3 className="section-title vip-title">VIP ACCESS</h3>
+            <p className="vip-subtitle text-center">EARLY DROPS • EXCLUSIVE DEMOS</p>
+            <div className="vip-benefits">
+              <div className="vip-benefit">
+                <span className="check">✓</span> Behind-the-scenes content
               </div>
-              <div className="flex items-center gap-3 text-sm" style={{ color: 'var(--text-primary)' }}>
-                <span className="text-purple-400">✓</span> Early access to new tracks
+              <div className="vip-benefit">
+                <span className="check">✓</span> Early access to new tracks
               </div>
-              <div className="flex items-center gap-3 text-sm" style={{ color: 'var(--text-primary)' }}>
-                <span className="text-purple-400">✓</span> Exclusive freestyles &amp; demos
+              <div className="vip-benefit">
+                <span className="check">✓</span> Exclusive freestyles &amp; demos
               </div>
-              <div className="flex items-center gap-3 text-sm" style={{ color: 'var(--text-primary)' }}>
-                <span className="text-purple-400">✓</span> Vote on upcoming content
+              <div className="vip-benefit">
+                <span className="check">✓</span> Vote on upcoming content
               </div>
             </div>
             <div className="text-center">
               <button className="btn-swamp btn-vip">JOIN THE CREW</button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div className="section-divider my-8" />
+        <div className="section-divider" />
 
-      {/* Photo & Lyric Wall */}
-      <section className="relative z-10 py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-xl md:text-2xl font-bold text-center mb-8" style={{ color: 'var(--gold)' }}>
-            PHOTO &amp; LYRIC WALL
-          </h3>
-          <div className="flex justify-center gap-4 mb-6 flex-wrap">
+        {/* Photo & Lyric Wall */}
+        <section className="photo-section">
+          <h3 className="section-title">PHOTO &amp; LYRIC WALL</h3>
+          <div className="photo-grid">
             <div className="photo-thumb">📷</div>
             <div className="photo-thumb">🎤</div>
             <div className="photo-thumb">📝</div>
             <div className="photo-thumb">🎸</div>
           </div>
-          <div className="text-center">
-            <button className="btn-swamp">ENTER NOW</button>
+          <button className="btn-swamp">ENTER NOW</button>
+        </section>
+
+        <div className="section-divider" />
+
+        {/* Studio Section */}
+        <section className="studio-section">
+          <h3 className="section-title">THE STUDIO</h3>
+          <div className="studio-buttons">
+            <button className="btn-swamp">✦ ADD UPDATE ✦</button>
+            <button className="btn-swamp">✦ UPLOAD FILE ✦</button>
+            <button className="btn-swamp">✦ VOTE NOW ✦</button>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div className="section-divider my-8" />
+        <div className="section-divider" />
 
-      {/* The Studio */}
-      <section className="relative z-10 py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-xl md:text-2xl font-bold text-center mb-8" style={{ color: 'var(--gold)' }}>
-            THE STUDIO
-          </h3>
-          <div className="flex justify-center gap-3 md:gap-4 flex-wrap">
-            <button className="btn-swamp">
-              <span className="mr-2">✦</span>ADD UPDATE<span className="ml-2">✦</span>
-            </button>
-            <button className="btn-swamp">
-              <span className="mr-2">✦</span>UPLOAD FILE<span className="ml-2">✦</span>
-            </button>
-            <button className="btn-swamp">
-              <span className="mr-2">✦</span>VOTE NOW<span className="ml-2">✦</span>
-            </button>
+        {/* Footer */}
+        <footer className="site-footer">
+          <div className="social-links">
+            <a href="https://www.instagram.com/_d_roc_" target="_blank" rel="noopener noreferrer" className="social-link" title="Instagram">📸</a>
+            <a href="https://www.tiktok.com/@big.droc" target="_blank" rel="noopener noreferrer" className="social-link" title="TikTok">🎵</a>
+            <a href="https://youtube.com/@bigdroc" target="_blank" rel="noopener noreferrer" className="social-link" title="YouTube">▶️</a>
+            <a href="#" className="social-link" title="Spotify">🎧</a>
           </div>
-        </div>
-      </section>
-
-      <div className="section-divider my-8" />
-
-      {/* Footer */}
-      <footer className="relative z-10 py-12 px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          {/* Social Links */}
-          <div className="flex justify-center gap-6 mb-8">
-            <a
-              href="https://www.instagram.com/_d_roc_"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
-              style={{ background: 'var(--bg-cave)', border: '2px solid var(--gold-dark)' }}
-              title="Instagram"
-            >
-              <span className="text-xl">📸</span>
-            </a>
-            <a
-              href="https://www.tiktok.com/@big.droc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
-              style={{ background: 'var(--bg-cave)', border: '2px solid var(--gold-dark)' }}
-              title="TikTok"
-            >
-              <span className="text-xl">🎵</span>
-            </a>
-            <a
-              href="https://youtube.com/@bigdroc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
-              style={{ background: 'var(--bg-cave)', border: '2px solid var(--gold-dark)' }}
-              title="YouTube"
-            >
-              <span className="text-xl">▶️</span>
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
-              style={{ background: 'var(--bg-cave)', border: '2px solid var(--gold-dark)' }}
-              title="Spotify"
-            >
-              <span className="text-xl">🎧</span>
-            </a>
-          </div>
-
-          <p className="text-sm tracking-wider mb-2" style={{ color: 'var(--text-muted)' }}>
-            DADDY FREQUENCY PRODUCTIONS
-          </p>
-          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            © 2025 MUD IN TRAP. All rights reserved.
-          </p>
-        </div>
-      </footer>
+          <p className="footer-text">DADDY FREQUENCY PRODUCTIONS</p>
+          <p className="footer-copyright">© 2025 MUD IN TRAP. All rights reserved.</p>
+        </footer>
+      </div>
     </div>
   )
 }
