@@ -35,7 +35,7 @@ export default function Home() {
                 textShadow: '0 0 30px rgba(168, 85, 247, 0.4), 2px 2px 0 var(--gold-dark)',
               }}
             >
-              MUD <span style={{ fontSize: '0.6em', verticalAlign: 'middle' }}>IN</span> TRAP
+              MUD <span style={{ fontSize: '0.6em', verticalAlign: 'middle' }}>IN THE</span> TRAP
             </h1>
             <p className="text-sm tracking-[0.3em] mt-2" style={{ color: 'var(--gold-dark)' }}>
               Country Meets Trap
@@ -244,7 +244,7 @@ export default function Home() {
             DADDY FREQUENCY PRODUCTIONS
           </p>
           <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            © 2025 MUD IN TRAP. All rights reserved.
+            © 2025 MUD IN THE TRAP. All rights reserved.
           </p>
         </div>
       </footer>
