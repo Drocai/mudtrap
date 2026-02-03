@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { createClient } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import type { User } from '@supabase/supabase-js'
+import Link from 'next/link'
 
 export default function StudioPage() {
   const [user, setUser] = useState<User | null>(null)
@@ -15,7 +16,7 @@ export default function StudioPage() {
   ])
   const [newUpdate, setNewUpdate] = useState('')
   const router = useRouter()
-  const supabase = createClient()
+  const supabase = useMemo(() => createClient(), [])
 
   useEffect(() => {
     const getUser = async () => {
@@ -24,7 +25,7 @@ export default function StudioPage() {
       setLoading(false)
     }
     getUser()
-  }, [supabase.auth])
+  }, [supabase])
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
@@ -33,9 +34,9 @@ export default function StudioPage() {
 
   const addUpdate = () => {
     if (newUpdate.trim()) {
-      setUpdates([
+      setUpdates(prevUpdates => [
         { id: Date.now(), text: newUpdate, author: user?.email?.split('@')[0] || 'Anonymous', date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) },
-        ...updates
+        ...prevUpdates
       ])
       setNewUpdate('')
     }
@@ -54,9 +55,9 @@ export default function StudioPage() {
       {/* Header */}
       <header className="relative z-10 py-6 px-4 border-b" style={{ borderColor: 'var(--gold-dark)' }}>
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <a href="/" className="text-2xl font-bold" style={{ color: 'var(--gold)' }}>
+          <Link href="/" className="text-2xl font-bold" style={{ color: 'var(--gold)' }}>
             MUD <span style={{ fontSize: '0.6em' }}>IN THE</span> TRAP
-          </a>
+          </Link>
           <div className="flex items-center gap-4">
             {user ? (
               <>
@@ -68,9 +69,9 @@ export default function StudioPage() {
                 </button>
               </>
             ) : (
-              <a href="/auth" className="btn-swamp btn-vip text-sm py-2 px-4">
+              <Link href="/auth" className="btn-swamp btn-vip text-sm py-2 px-4">
                 Sign In
-              </a>
+              </Link>
             )}
           </div>
         </div>
@@ -140,9 +141,9 @@ export default function StudioPage() {
               <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
                 Sign in to access the collaboration hub
               </p>
-              <a href="/auth" className="btn-swamp btn-vip">
+              <Link href="/auth" className="btn-swamp btn-vip">
                 Sign In to Enter
-              </a>
+              </Link>
             </div>
           )}
         </div>

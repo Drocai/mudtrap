@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo, type FormEvent } from 'react'
 import { createClient } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function AuthPage() {
   const [email, setEmail] = useState('')
@@ -11,9 +12,9 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const router = useRouter()
-  const supabase = createClient()
+  const supabase = useMemo(() => createClient(), [])
 
-  const handleAuth = async (e: React.FormEvent) => {
+  const handleAuth = async (e: FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setMessage('')
@@ -108,9 +109,9 @@ export default function AuthPage() {
         </div>
 
         <div className="mt-4 text-center">
-          <a href="/" className="text-sm hover:underline" style={{ color: 'var(--gold-dark)' }}>
+          <Link href="/" className="text-sm hover:underline" style={{ color: 'var(--gold-dark)' }}>
             ← Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>

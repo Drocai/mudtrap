@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 export default function ReleasesPage() {
   const tracks = [
     {
@@ -33,12 +35,12 @@ export default function ReleasesPage() {
       {/* Header */}
       <header className="relative z-10 py-6 px-4 border-b" style={{ borderColor: 'var(--gold-dark)' }}>
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <a href="/" className="text-2xl font-bold" style={{ color: 'var(--gold)' }}>
+          <Link href="/" className="text-2xl font-bold" style={{ color: 'var(--gold)' }}>
             MUD <span style={{ fontSize: '0.6em' }}>IN THE</span> TRAP
-          </a>
+          </Link>
           <nav className="flex gap-4">
-            <a href="/" className="text-sm hover:text-purple-400 transition-colors" style={{ color: 'var(--gold-light)' }}>Home</a>
-            <a href="/studio" className="text-sm hover:text-purple-400 transition-colors" style={{ color: 'var(--gold-light)' }}>Studio</a>
+            <Link href="/" className="text-sm hover:text-purple-400 transition-colors" style={{ color: 'var(--gold-light)' }}>Home</Link>
+            <Link href="/studio" className="text-sm hover:text-purple-400 transition-colors" style={{ color: 'var(--gold-light)' }}>Studio</Link>
           </nav>
         </div>
       </header>
