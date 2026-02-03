@@ -16,6 +16,9 @@
   ],
   "author": "Daddy Frequency Productions",
   "license": "ISC",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.91.1",

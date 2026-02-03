@@ -1,13 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { createClient } from '@/lib/supabase'
 import type { User } from '@supabase/supabase-js'
+import Link from 'next/link'
 
 export default function VIPPage() {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
-  const supabase = createClient()
+  const supabase = useMemo(() => createClient(), [])
 
   useEffect(() => {
     const getUser = async () => {
@@ -16,7 +17,7 @@ export default function VIPPage() {
       setLoading(false)
     }
     getUser()
-  }, [supabase.auth])
+  }, [])
 
   if (loading) {
     return (
@@ -31,12 +32,12 @@ export default function VIPPage() {
       {/* Header */}
       <header className="relative z-10 py-6 px-4 border-b" style={{ borderColor: 'var(--gold-dark)' }}>
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <a href="/" className="text-2xl font-bold" style={{ color: 'var(--gold)' }}>
+          <Link href="/" className="text-2xl font-bold" style={{ color: 'var(--gold)' }}>
             MUD <span style={{ fontSize: '0.6em' }}>IN THE</span> TRAP
-          </a>
+          </Link>
           <nav className="flex gap-4">
-            <a href="/" className="text-sm hover:text-purple-400 transition-colors" style={{ color: 'var(--gold-light)' }}>Home</a>
-            <a href="/studio" className="text-sm hover:text-purple-400 transition-colors" style={{ color: 'var(--gold-light)' }}>Studio</a>
+            <Link href="/" className="text-sm hover:text-purple-400 transition-colors" style={{ color: 'var(--gold-light)' }}>Home</Link>
+            <Link href="/studio" className="text-sm hover:text-purple-400 transition-colors" style={{ color: 'var(--gold-light)' }}>Studio</Link>
           </nav>
         </div>
       </header>
@@ -107,9 +108,9 @@ export default function VIPPage() {
                   <span style={{ color: 'var(--purple-light)' }}>✓</span> Vote on upcoming content
                 </li>
               </ul>
-              <a href="/auth" className="btn-swamp btn-vip inline-block">
+              <Link href="/auth" className="btn-swamp btn-vip inline-block">
                 Sign Up for VIP Access
-              </a>
+              </Link>
             </div>
           )}
         </div>

@@ -13,7 +13,7 @@ export function createClient() {
         signInWithPassword: async () => ({ data: null, error: new Error('Supabase not configured') }),
         signOut: async () => ({ error: null }),
       }
-    } as ReturnType<typeof createBrowserClient>
+    } as Partial<ReturnType<typeof createBrowserClient>>
   }
 
   return createBrowserClient(supabaseUrl, supabaseAnonKey)
