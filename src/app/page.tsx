@@ -47,13 +47,30 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Studio Preview Section */}
+        <section className="studio-preview">
+          <h3 className="section-title">THE STUDIO</h3>
+          <div className="studio-gallery">
+            <div className="studio-image">
+              <span className="studio-image-icon">🎵</span>
+            </div>
+            <div className="studio-image">
+              <span className="studio-image-icon">🎹</span>
+            </div>
+            <div className="studio-image">
+              <span className="studio-image-icon">🎤</span>
+            </div>
+          </div>
+          <button className="btn-swamp btn-studio-enter">ENTER THE STUDIO</button>
+        </section>
+
         <div className="section-divider" />
 
         {/* Main Grid - Roadmap & VIP */}
         <section className="main-grid">
           {/* Season Roadmap */}
           <div className="glass-panel">
-            <h3 className="section-title">✦ THE SEASON ROADMAP ✦</h3>
+            <h3 className="section-title">THE SEASON ROADMAP</h3>
             <div className="track-cards">
               <div className="track-card done">
                 <div className="track-label">TRACK 1</div>
@@ -116,13 +133,12 @@ export default function Home() {
 
         <div className="section-divider" />
 
-        {/* Studio Section */}
+        {/* Studio Actions Section */}
         <section className="studio-section">
-          <h3 className="section-title">THE STUDIO</h3>
           <div className="studio-buttons">
-            <button className="btn-swamp">✦ ADD UPDATE ✦</button>
-            <button className="btn-swamp">✦ UPLOAD FILE ✦</button>
-            <button className="btn-swamp">✦ VOTE NOW ✦</button>
+            <button className="btn-swamp">ADD UPDATE</button>
+            <button className="btn-swamp">UPLOAD FILE</button>
+            <button className="btn-swamp">VOTE NOW</button>
           </div>
         </section>
 
