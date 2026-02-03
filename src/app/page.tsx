@@ -1,8 +1,44 @@
 'use client'
 
-import { useState } from 'react'
+import Link from 'next/link'
 
 export default function Home() {
+  const navItems = [
+    { name: 'HOME', href: '/' },
+    { name: 'RELEASES', href: '/releases' },
+    { name: 'VIP ACCESS', href: '/vip' },
+    { name: 'STUDIO', href: '/studio' },
+  ]
+
+  return (
+    <div className="min-h-screen waterfall-section">
+      {/* Waterfall overlay effect */}
+      <div
+        className="fixed inset-0 pointer-events-none opacity-30 z-0"
+        style={{
+          background: `repeating-linear-gradient(
+            180deg,
+            transparent 0px,
+            rgba(168, 85, 247, 0.03) 2px,
+            transparent 4px
+          )`,
+          animation: 'waterfall-flow 3s linear infinite',
+        }}
+      />
+
+      {/* Header */}
+      <header className="relative z-10 py-6 px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Logo */}
+          <div className="text-center mb-6">
+            <h1
+              className="text-4xl md:text-6xl font-bold tracking-wider"
+              style={{
+                color: 'var(--gold)',
+                textShadow: '0 0 30px rgba(168, 85, 247, 0.4), 2px 2px 0 var(--gold-dark)',
+              }}
+            >
+              MUD <span style={{ fontSize: '0.6em', verticalAlign: 'middle' }}>IN THE</span> TRAP
   const [activeNav, setActiveNav] = useState('HOME')
 
   return (
@@ -17,6 +53,17 @@ export default function Home() {
             <p className="tagline">Country Meets Trap</p>
           </div>
 
+          {/* Navigation */}
+          <nav className="flex justify-center gap-2 md:gap-8 flex-wrap">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="px-3 py-2 text-sm tracking-wider transition-all hover:text-purple-400"
+                style={{
+                  color: item.name === 'HOME' ? 'var(--purple-light)' : 'var(--gold-light)',
+                  borderBottom: item.name === 'HOME' ? '2px solid var(--purple-glow)' : '2px solid transparent',
+                }}
           <nav className="main-nav">
             {['HOME', 'RELEASES', 'VIP ACCESS', 'STUDIO'].map((item) => (
               <button
@@ -24,8 +71,8 @@ export default function Home() {
                 onClick={() => setActiveNav(item)}
                 className={`nav-link ${activeNav === item ? 'active' : ''}`}
               >
-                {item}
-              </button>
+                {item.name}
+              </Link>
             ))}
           </nav>
         </header>
@@ -89,7 +136,7 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
-              <button className="btn-swamp">VIEW ALL TRACKS</button>
+              <Link href="/releases" className="btn-swamp inline-block">VIEW ALL TRACKS</Link>
             </div>
           </div>
 
@@ -112,7 +159,7 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
-              <button className="btn-swamp btn-vip">JOIN THE CREW</button>
+              <Link href="/vip" className="btn-swamp btn-vip inline-block">JOIN THE CREW</Link>
             </div>
           </div>
         </section>
@@ -128,6 +175,81 @@ export default function Home() {
             <div className="photo-thumb">📝</div>
             <div className="photo-thumb">🎸</div>
           </div>
+          <div className="text-center">
+            <Link href="/studio" className="btn-swamp inline-block">ENTER NOW</Link>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider my-8" />
+
+      {/* The Studio */}
+      <section className="relative z-10 py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-xl md:text-2xl font-bold text-center mb-8" style={{ color: 'var(--gold)' }}>
+            THE STUDIO
+          </h3>
+          <div className="flex justify-center gap-3 md:gap-4 flex-wrap">
+            <Link href="/studio" className="btn-swamp inline-block">
+              <span className="mr-2">✦</span>ADD UPDATE<span className="ml-2">✦</span>
+            </Link>
+            <Link href="/studio" className="btn-swamp inline-block">
+              <span className="mr-2">✦</span>UPLOAD FILE<span className="ml-2">✦</span>
+            </Link>
+            <Link href="/studio" className="btn-swamp inline-block">
+              <span className="mr-2">✦</span>VOTE NOW<span className="ml-2">✦</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider my-8" />
+
+      {/* Footer */}
+      <footer className="relative z-10 py-12 px-4 text-center">
+        <div className="max-w-4xl mx-auto">
+          {/* Social Links */}
+          <div className="flex justify-center gap-6 mb-8">
+            <a
+              href="https://www.instagram.com/_d_roc_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ background: 'var(--bg-cave)', border: '2px solid var(--gold-dark)' }}
+              title="Instagram"
+            >
+              <span className="text-xl">📸</span>
+            </a>
+            <a
+              href="https://www.tiktok.com/@big.droc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ background: 'var(--bg-cave)', border: '2px solid var(--gold-dark)' }}
+              title="TikTok"
+            >
+              <span className="text-xl">🎵</span>
+            </a>
+            <a
+              href="https://youtube.com/@bigdroc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ background: 'var(--bg-cave)', border: '2px solid var(--gold-dark)' }}
+              title="YouTube"
+            >
+              <span className="text-xl">▶️</span>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
+              style={{ background: 'var(--bg-cave)', border: '2px solid var(--gold-dark)' }}
+              title="Spotify"
+            >
+              <span className="text-xl">🎧</span>
+            </a>
           <button className="btn-swamp">ENTER NOW</button>
         </section>
 
@@ -142,6 +264,14 @@ export default function Home() {
           </div>
         </section>
 
+          <p className="text-sm tracking-wider mb-2" style={{ color: 'var(--text-muted)' }}>
+            DADDY FREQUENCY PRODUCTIONS
+          </p>
+          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+            © 2025 MUD IN THE TRAP. All rights reserved.
+          </p>
+        </div>
+      </footer>
         <div className="section-divider" />
 
         {/* Footer */}

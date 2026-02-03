@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Mud In Trap | Country Meets Trap',
+  title: 'Mud In The Trap | Country Meets Trap',
   description: 'Welcome to the Swamp. Behind the scenes of the music. Country Rap Therapy.',
-  keywords: 'country rap,trap music,mud in trap,country meets trap,hip hop,D RoC,Timmy',
+  keywords: 'country rap,trap music,mud in the trap,country meets trap,hip hop,D RoC,Timmy',
   openGraph: {
-    title: 'Mud In Trap | Country Meets Trap',
+    title: 'Mud In The Trap | Country Meets Trap',
     description: 'Welcome to the Swamp. Behind the scenes of the music.',
     type: 'website',
   },
   twitter: {
     card: 'summary',
-    title: 'Mud In Trap | Country Meets Trap',
+    title: 'Mud In The Trap | Country Meets Trap',
     description: 'Welcome to the Swamp. Behind the scenes of the music.',
   },
 }
