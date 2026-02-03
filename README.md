@@ -1,3 +1,5 @@
+https://www.notion.so/MUD-IN-THE-TRAP-Complete-Style-Guide-2f443df55323819e899dd0ca30150dd2?source=copy_link
+
 The website features a dark background with flowing water illuminated by purple light and several navigation and content sections:
 Navigation: Home, Releases, VIP Access, and Studio.
 Current/Upcoming Music: The "CURRENT TRACK" is "LOCK 'CHEVY 1'," and the "NEXT UP" track is "TIMMY'S SOLO."
