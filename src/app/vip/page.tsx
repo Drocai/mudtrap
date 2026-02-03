@@ -17,7 +17,7 @@ export default function VIPPage() {
       setLoading(false)
     }
     getUser()
-  }, [])
+  }, [supabase])
 
   if (loading) {
     return (

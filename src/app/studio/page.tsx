@@ -25,7 +25,7 @@ export default function StudioPage() {
       setLoading(false)
     }
     getUser()
-  }, [])
+  }, [supabase])
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
