@@ -3,10 +3,12 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function AuthPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [displayName, setDisplayName] = useState('')
   const [isSignUp, setIsSignUp] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -23,6 +25,11 @@ export default function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            data: {
+              display_name: displayName || email.split('@')[0]
+            }
+          }
         })
         if (error) throw error
         setMessage('Check your email for the confirmation link!')
@@ -43,76 +50,110 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen waterfall-section flex items-center justify-center px-4">
-      <div className="glass-panel p-8 rounded-lg max-w-md w-full">
-        <h1 className="text-3xl font-bold text-center mb-2" style={{ color: 'var(--gold)' }}>
-          MUD <span style={{ fontSize: '0.6em' }}>IN THE</span> TRAP
-        </h1>
-        <p className="text-center mb-8" style={{ color: 'var(--text-secondary)' }}>
-          {isSignUp ? 'Join The Crew' : 'Enter The Swamp'}
-        </p>
+    <>
+      <div className="waterfall-bg" />
+      <div className="waterfall-streaks" />
+      <div className="glow-particles" />
 
-        <form onSubmit={handleAuth} className="space-y-4">
-          <div>
-            <label className="block text-sm mb-2" style={{ color: 'var(--gold-light)' }}>
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded bg-black/50 border-2 focus:outline-none focus:border-purple-500 transition-colors"
-              style={{ borderColor: 'var(--gold-dark)', color: 'var(--text-primary)' }}
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm mb-2" style={{ color: 'var(--gold-light)' }}>
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded bg-black/50 border-2 focus:outline-none focus:border-purple-500 transition-colors"
-              style={{ borderColor: 'var(--gold-dark)', color: 'var(--text-primary)' }}
-              required
-              minLength={6}
-            />
-          </div>
-
-          {message && (
-            <p className="text-sm text-center" style={{ color: message.includes('Check') ? 'var(--purple-light)' : '#ef4444' }}>
-              {message}
+      <div className="z-content min-h-screen flex items-center justify-center px-4 py-12">
+        <div className="vip-container max-w-md w-full">
+          {/* Logo */}
+          <div className="text-center mb-8">
+            <Link href="/" className="logo-main inline-block text-3xl">
+              MUD<span className="in-text">IN</span>TRAP
+            </Link>
+            <div className="logo-divider" />
+            <p className="logo-subtitle text-sm">
+              {isSignUp ? 'Join The Crew' : 'Enter The Swamp'}
             </p>
-          )}
+          </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="btn-swamp btn-vip w-full py-3"
-          >
-            {loading ? 'Loading...' : isSignUp ? 'Sign Up' : 'Sign In'}
-          </button>
-        </form>
+          <form onSubmit={handleAuth} className="space-y-4">
+            {isSignUp && (
+              <div>
+                <label className="block text-sm mb-2 text-gold-light">
+                  Display Name
+                </label>
+                <input
+                  type="text"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder="How should we call you?"
+                  className="input-swamp"
+                />
+              </div>
+            )}
 
-        <div className="mt-6 text-center">
-          <button
-            onClick={() => setIsSignUp(!isSignUp)}
-            className="text-sm hover:underline"
-            style={{ color: 'var(--purple-light)' }}
-          >
-            {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
-          </button>
-        </div>
+            <div>
+              <label className="block text-sm mb-2 text-gold-light">
+                Email
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                className="input-swamp"
+                required
+              />
+            </div>
 
-        <div className="mt-4 text-center">
-          <a href="/" className="text-sm hover:underline" style={{ color: 'var(--gold-dark)' }}>
-            ← Back to Home
-          </a>
+            <div>
+              <label className="block text-sm mb-2 text-gold-light">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="input-swamp"
+                required
+                minLength={6}
+              />
+              {isSignUp && (
+                <p className="text-xs text-muted mt-1">Minimum 6 characters</p>
+              )}
+            </div>
+
+            {message && (
+              <div className={`p-3 rounded text-center text-sm ${
+                message.includes('Check') || message.includes('success')
+                  ? 'bg-purple-glow/20 text-purple-bright'
+                  : 'bg-red-500/20 text-red-400'
+              }`}>
+                {message}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-swamp btn-vip w-full py-3"
+            >
+              {loading ? 'Loading...' : isSignUp ? 'Create Account' : 'Sign In'}
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <button
+              onClick={() => {
+                setIsSignUp(!isSignUp)
+                setMessage('')
+              }}
+              className="text-sm text-purple-bright hover:underline"
+            >
+              {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
+            </button>
+          </div>
+
+          <div className="mt-6 pt-6 border-t border-gold-dark/30 text-center">
+            <Link href="/" className="text-sm text-gold-dark hover:text-gold transition-colors">
+              ← Back to Home
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
